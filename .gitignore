@@ -4,6 +4,9 @@
 # user settings files
 *.user
 
+# setup files
+setup/
+
 # executable binaries
 bin/
 bin-int/
