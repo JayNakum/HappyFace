@@ -1,0 +1,9 @@
+# visual studio files
+.vs/
+
+# user settings files
+*.user
+
+# executable binaries
+bin/
+bin-int/
