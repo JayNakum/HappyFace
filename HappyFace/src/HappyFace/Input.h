@@ -44,8 +44,8 @@ public:
 
 	// Mouse
 	inline bool isMouseMoved() const noexcept { return m_mouseMoved; }
-	inline bool getMouseX() const noexcept { return m_mouseX; }
-	inline bool getMouseY() const noexcept { return m_mouseY; }
+	inline double getMouseX() const noexcept { return m_mouseX; }
+	inline double getMouseY() const noexcept { return m_mouseY; }
 	std::function<void(double, double)> mouseMoved = [&](auto xPos, auto yPos) {
 		this->m_mouseMoved = true;
 		this->m_mouseX = xPos;
@@ -54,8 +54,8 @@ public:
 
 	// Window
 	inline bool isWindowResized() const noexcept { return m_windowResized; }
-	inline bool getWindowWidth() const noexcept { return m_windowWidth; }
-	inline bool getWindowHeight() const noexcept { return m_windowHeight; }
+	inline int getWindowWidth() const noexcept { return m_windowWidth; }
+	inline int getWindowHeight() const noexcept { return m_windowHeight; }
 	std::function<void(int, int)> windowResized = [&](auto width, auto height) {
 		this->m_windowResized = true;
 		this->m_windowWidth = width;

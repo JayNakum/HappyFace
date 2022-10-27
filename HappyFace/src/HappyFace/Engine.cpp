@@ -40,8 +40,8 @@ void Engine::go()
 
 	while (!m_window.shouldClose())
 	{
-		m_renderer.update();
 		Input::getInstance().update();
+		m_renderer.update();
 		m_window.update();
 
 		m_renderer.render(test);
