@@ -100,6 +100,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -115,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +132,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,6 +148,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -155,6 +159,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\HappyFace\GLShaderProgram.cpp" />
+    <ClCompile Include="src\HappyFace\ResourceManager.cpp" />
+    <ClCompile Include="src\HappyFace\Entity.cpp" />
+    <ClCompile Include="src\HappyFace\GLShader.cpp" />
+    <ClCompile Include="src\HappyFace\GLVertexArray.cpp" />
     <ClCompile Include="src\HappyFace\Renderer.cpp" />
     <ClCompile Include="src\HappyFace\Engine.cpp" />
     <ClCompile Include="src\Main.cpp" />
@@ -163,10 +172,16 @@
     <ClCompile Include="vendors\includes\glm\detail\glm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\HappyFace\GLShaderProgram.h" />
+    <ClInclude Include="src\HappyFace\ResourceManager.h" />
+    <ClInclude Include="src\HappyFace\Entity.h" />
+    <ClInclude Include="src\HappyFace\GLShader.h" />
+    <ClInclude Include="src\HappyFace\GLVertexArray.h" />
     <ClInclude Include="src\HappyFace\Renderer.h" />
     <ClInclude Include="src\HappyFace\Engine.h" />
     <ClInclude Include="src\HappyFace\Input.h" />
     <ClInclude Include="src\HappyFace\Scene.h" />
+    <ClInclude Include="src\HappyFace\Vertex.h" />
     <ClInclude Include="vendors\includes\glad\glad.h" />
     <ClInclude Include="vendors\includes\GLFW\glfw3.h" />
     <ClInclude Include="vendors\includes\GLFW\glfw3native.h" />
@@ -318,6 +333,8 @@
     <ClInclude Include="src\HappyFace\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\shaders\test_shader.fs.glsl" />
+    <None Include="res\shaders\test_shader.vs.glsl" />
     <None Include="vendors\includes\glm\detail\func_common.inl" />
     <None Include="vendors\includes\glm\detail\func_common_simd.inl" />
     <None Include="vendors\includes\glm\detail\func_exponential.inl" />

@@ -5,7 +5,6 @@ class Scene
 public:
 	void render();
 	void addModel();
-
-private:
-
+	void addCamera();
+	void addLight();
 };

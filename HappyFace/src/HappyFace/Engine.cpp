@@ -2,7 +2,9 @@
 
 #include "Input.h"
 
-#include <GLFW/glfw3.h>
+#include <vector>
+#include "Vertex.h"
+#include "Entity.h"
 
 static void connectWindowInstanceToInput(GLFWwindow* window) {
 	const auto resizeCallback = [](GLFWwindow* w, auto width, auto height) {
@@ -23,11 +25,26 @@ static void connectWindowInstanceToInput(GLFWwindow* window) {
 
 void Engine::go()
 {
+	std::vector<Vertex> vertices = {
+		Vertex(glm::vec3(0.5f, 0.5f, 0.0f), glm::vec2(1.0f, 1.0f)),
+		Vertex(glm::vec3(0.5f, -0.5f, 0.0f), glm::vec2(1.0f, 0.0f)),
+		Vertex(glm::vec3(-0.5f, -0.5f, 0.0f), glm::vec2(0.0f, 0.0f)),
+		Vertex(glm::vec3(-0.5f, 0.5f, 0.0f), glm::vec2(0.0f, 1.0f)),
+	};
+	std::vector<unsigned int> indices = {
+		0, 1, 3,
+		1, 2, 3
+	};
+
+	Entity test(vertices, indices);
+
 	while (!m_window.shouldClose())
 	{
 		m_renderer.update();
 		Input::getInstance().update();
 		m_window.update();
+
+		m_renderer.render(test);
 
 		m_window.swapBuffers();
 	}
@@ -40,6 +57,10 @@ Engine::Engine()
 	connectWindowInstanceToInput(window);
 
 	m_renderer.init(m_window.getWidth(), m_window.getHeight());
+}
+
+void Engine::loadScene()
+{
 }
 
 void Engine::terminate()

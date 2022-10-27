@@ -18,6 +18,9 @@ public:
 		return instance;
 	}
 
+	Input(const Input&) = delete;
+	Input& operator=(const Input&) = delete;
+
 	inline bool isKeyPressed(const std::size_t key) const noexcept {
 		return m_keys[key] && !m_prevKeys[key];
 	}

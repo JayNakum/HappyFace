@@ -1,15 +1,14 @@
 #pragma once
 
-#include "Window.h"
 #include "Renderer.h"
+#include "Window.h"
 
 class Engine
 {
 public:
 	Engine();
-	void go();
-
 	void loadScene();
+	void go();
 
 	void terminate();
 private:
