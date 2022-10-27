@@ -55,7 +55,7 @@ Engine::Engine()
 {
 	GLFWwindow* window = m_window.init();
 	connectWindowInstanceToInput(window);
-
+	m_window.setVsync(true);
 	m_renderer.init(m_window.getWidth(), m_window.getHeight());
 }
 

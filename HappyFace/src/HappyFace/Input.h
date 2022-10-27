@@ -54,8 +54,8 @@ public:
 
 	// Window
 	inline bool isWindowResized() const noexcept { return m_windowResized; }
-	inline int getWindowWidth() const noexcept { return m_windowWidth; }
-	inline int getWindowHeight() const noexcept { return m_windowHeight; }
+	inline int getWindowWidth() const noexcept { return (int)m_windowWidth; }
+	inline int getWindowHeight() const noexcept { return (int)m_windowHeight; }
 	std::function<void(int, int)> windowResized = [&](auto width, auto height) {
 		this->m_windowResized = true;
 		this->m_windowWidth = width;

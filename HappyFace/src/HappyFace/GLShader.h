@@ -8,18 +8,17 @@
 #include <iostream>
 #include <string>
 
-#include "ResourceManager.h"
-
 class GLShader
 {
 public:
     enum ShaderType : int {
+        UNDEFINED = -1,
         VERTEX = GL_VERTEX_SHADER,
         FRAGMENT = GL_FRAGMENT_SHADER,
         GEOMETRY = GL_GEOMETRY_SHADER
     };
 
-    GLShader(const ShaderType type, const char* sourcePath);
+    GLShader(const ShaderType type, const std::string& source);
     ~GLShader();
 
     inline unsigned int getID() const { return m_id; }

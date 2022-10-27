@@ -2,8 +2,8 @@
 
 #include "ResourceManager.h"
 
-GLShader::GLShader(const ShaderType type, const char* sourcePath)
-	: m_source(ResourceManager::getInstance().loadFile(sourcePath)), m_type(type)
+GLShader::GLShader(const ShaderType type, const std::string& source)
+	: m_source(source), m_type(type)
 {
 	m_id = glCreateShader(m_type);
 

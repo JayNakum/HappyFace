@@ -3,6 +3,8 @@
 #include <string>
 #include <filesystem>
 
+#include "GLShader.h"
+
 class ResourceManager
 {
 	ResourceManager() = default;
@@ -18,6 +20,8 @@ public:
 	ResourceManager(const ResourceManager&) = delete;
 	ResourceManager& operator=(const ResourceManager&) = delete;
 
-	std::string loadFile(const std::filesystem::path& path) const;
+	GLShader loadShader(const std::string& filepath) const;
+	unsigned int loadTexture(char const* path) const;
+	std::string loadFile(const std::string& filepath) const;
 
 };
