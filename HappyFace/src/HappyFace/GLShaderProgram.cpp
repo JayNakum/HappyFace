@@ -7,11 +7,6 @@ GLShaderProgram::GLShaderProgram()
     m_id = glCreateProgram();
 }
 
-GLShaderProgram::~GLShaderProgram()
-{
-    deleteProgram();
-}
-
 void GLShaderProgram::deleteProgram()
 {
     glDeleteProgram(m_id);

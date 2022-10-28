@@ -9,7 +9,6 @@ class GLShaderProgram
 {
 public:
     GLShaderProgram();
-    ~GLShaderProgram();
 
     inline unsigned int getProgramID() const { return m_id; }
 

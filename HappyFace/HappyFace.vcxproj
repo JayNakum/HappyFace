@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\HappyFace\GLTexture.cpp" />
     <ClCompile Include="src\HappyFace\GLShaderProgram.cpp" />
     <ClCompile Include="src\HappyFace\ResourceManager.cpp" />
     <ClCompile Include="src\HappyFace\Entity.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="vendors\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\HappyFace\GLTexture.h" />
     <ClInclude Include="src\HappyFace\GLShaderProgram.h" />
     <ClInclude Include="src\HappyFace\ResourceManager.h" />
     <ClInclude Include="src\HappyFace\Entity.h" />

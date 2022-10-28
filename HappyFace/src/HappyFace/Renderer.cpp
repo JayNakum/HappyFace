@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "Input.h"
+#include "ResourceManager.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -9,11 +10,15 @@
 
 void Renderer::render(const Entity& entity)
 {
-    glBindTexture(GL_TEXTURE_2D, entity.getTextureID());
-    entity.getShader().use();
+    static auto& entityShader = m_shaderCache.at("entity");
+
+    entity.getTexture().bind();
+    entityShader.use();
+    entityShader.setInt("texture1", 0);
     entity.getVAO().bind();
     glDrawElements(GL_TRIANGLES, entity.getIndices().size(), GL_UNSIGNED_INT, 0);
     entity.getVAO().unbind();
+    entity.getTexture().unbind();
 }
 
 void Renderer::update()
@@ -28,7 +33,7 @@ void Renderer::update()
     }
 }
 
-void Renderer::init(const unsigned int viewportWidth, const unsigned int viewportHeight)
+void Renderer::init(const std::pair<int, int>& viewport)
 {
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
@@ -36,10 +41,17 @@ void Renderer::init(const unsigned int viewportWidth, const unsigned int viewpor
         std::abort();
     }
 
-    m_viewportWidth = viewportWidth;
-    m_viewportHeight = viewportHeight;
+    m_viewportWidth = viewport.first;
+    m_viewportHeight = viewport.second;
 
-    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    defaultGLSettings();
+
+    compileShaders();
+}
+
+void Renderer::defaultGLSettings() const
+{
+    glClearColor(0.07f, 0.07f, 0.07f, 1.0f);
     glEnable(GL_DEPTH_TEST);
     /*
     glFrontFace(GL_CCW);
@@ -52,4 +64,29 @@ void Renderer::init(const unsigned int viewportWidth, const unsigned int viewpor
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     */
     glViewport(0, 0, (int)m_viewportWidth, (int)m_viewportHeight);
+}
+
+void Renderer::compileShaders()
+{
+    GLShaderProgram entity;
+    GLShader vertexShader = ResourceManager::getInstance().loadShader("res/shaders/test_shader.vs.glsl");
+    GLShader fragmentShader = ResourceManager::getInstance().loadShader("res/shaders/test_shader.fs.glsl");
+
+    entity.attach(vertexShader.getID());
+    entity.attach(fragmentShader.getID());
+    entity.linkProgram();
+
+    vertexShader.deleteShader();
+    fragmentShader.deleteShader();
+
+    m_shaderCache.insert({"entity", entity});
+}
+
+void Renderer::shutdown()
+{
+    for (auto& program : m_shaderCache)
+    {
+        program.second.deleteProgram();
+    }
+    m_shaderCache.clear();
 }

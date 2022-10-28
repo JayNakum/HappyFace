@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 
 #include <string>
+#include <utility>
 
 class Window
 {
@@ -22,6 +23,7 @@ public:
 
 	inline unsigned int getWidth() const noexcept { return m_data.width; }
 	inline unsigned int getHeight() const noexcept { return m_data.height; }
+	inline std::pair<int, int> getDimensions() const noexcept { return std::make_pair<int, int>((int)m_data.width, (int)m_data.height); }
 
 	inline bool shouldClose() const noexcept { return m_data.shouldWindowClose; }
 	inline bool isCursorEnabled() const noexcept { return m_data.showCursor; }

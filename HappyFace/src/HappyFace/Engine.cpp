@@ -3,6 +3,8 @@
 #include "Input.h"
 
 #include <vector>
+#include <unordered_map>
+
 #include "Vertex.h"
 #include "Entity.h"
 
@@ -56,7 +58,8 @@ Engine::Engine()
 	GLFWwindow* window = m_window.init();
 	connectWindowInstanceToInput(window);
 	m_window.setVsync(true);
-	m_renderer.init(m_window.getWidth(), m_window.getHeight());
+
+	m_renderer.init(m_window.getDimensions());
 }
 
 void Engine::loadScene()
@@ -66,4 +69,5 @@ void Engine::loadScene()
 void Engine::terminate()
 {
 	m_window.shutdown();
+	m_renderer.shutdown();
 }
