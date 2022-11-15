@@ -36,7 +36,7 @@
     <ClCompile Include="src\HappyFace\GLVertexArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\Entity.cpp">
+    <ClCompile Include="src\HappyFace\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\HappyFace\GLShader.cpp">
@@ -52,6 +52,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\HappyFace\GLTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HappyFace\Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -521,7 +524,7 @@
     <ClInclude Include="src\HappyFace\GLShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\Entity.h">
+    <ClInclude Include="src\HappyFace\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\HappyFace\ResourceManager.h">
@@ -537,6 +540,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\HappyFace\GLTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HappyFace\Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

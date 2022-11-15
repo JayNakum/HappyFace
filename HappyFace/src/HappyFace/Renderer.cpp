@@ -1,24 +1,24 @@
 #include "Renderer.h"
 
-#include <iostream>
 #include "Input.h"
 #include "ResourceManager.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <iostream>
 
-void Renderer::render(const Entity& entity)
+void Renderer::render(const Mesh& mesh)
 {
-    static auto& entityShader = m_shaderCache.at("entity");
+    static auto& meshShader = m_shaderCache.at("mesh");
 
-    entity.getTexture().bind();
-    entityShader.use();
-    entityShader.setInt("texture1", 0);
-    entity.getVAO().bind();
-    glDrawElements(GL_TRIANGLES, entity.getIndices().size(), GL_UNSIGNED_INT, 0);
-    entity.getVAO().unbind();
-    entity.getTexture().unbind();
+    mesh.getTexture().bind();
+    meshShader.use();
+    meshShader.setInt("texture1", 0);
+    mesh.getVAO().bind();
+    glDrawElements(GL_TRIANGLES, mesh.getIndicesCount(), GL_UNSIGNED_INT, 0);
+    mesh.getVAO().unbind();
+    mesh.getTexture().unbind();
 }
 
 void Renderer::update()
@@ -68,18 +68,18 @@ void Renderer::defaultGLSettings() const
 
 void Renderer::compileShaders()
 {
-    GLShaderProgram entity;
+    GLShaderProgram mesh;
     GLShader vertexShader = ResourceManager::getInstance().loadShader("res/shaders/test_shader.vs.glsl");
     GLShader fragmentShader = ResourceManager::getInstance().loadShader("res/shaders/test_shader.fs.glsl");
 
-    entity.attach(vertexShader.getID());
-    entity.attach(fragmentShader.getID());
-    entity.linkProgram();
+    mesh.attach(vertexShader.getID());
+    mesh.attach(fragmentShader.getID());
+    mesh.linkProgram();
 
     vertexShader.deleteShader();
     fragmentShader.deleteShader();
 
-    m_shaderCache.insert({"entity", entity});
+    m_shaderCache.insert({"mesh", mesh});
 }
 
 void Renderer::shutdown()

@@ -1,12 +1,14 @@
 #include "Engine.h"
 
-#include "Input.h"
-
 #include <vector>
 #include <unordered_map>
 
+#include "Input.h"
 #include "Vertex.h"
-#include "Entity.h"
+#include "Mesh.h"
+
+#include "GLTexture.h"
+#include "ResourceManager.h"
 
 static void connectWindowInstanceToInput(GLFWwindow* window) {
 	const auto resizeCallback = [](GLFWwindow* w, auto width, auto height) {
@@ -38,7 +40,12 @@ void Engine::go()
 		1, 2, 3
 	};
 
-	Entity test(vertices, indices);
+	GLTexture texture;
+	texture.init(ResourceManager::getInstance().loadTextureImage("res/textures/wall.jpg"));
+	Mesh myMesh(vertices, indices, texture);
+
+	Model myModel;
+	myModel.attachMesh(myMesh);
 
 	while (!m_window.shouldClose())
 	{
@@ -46,10 +53,14 @@ void Engine::go()
 		m_renderer.update();
 		m_window.update();
 
-		m_renderer.render(test);
+		m_renderer.render(myMesh);
 
 		m_window.swapBuffers();
 	}
+
+	texture.deleteTexture();
+	myModel.deleteModel();
+
 	terminate();
 }
 

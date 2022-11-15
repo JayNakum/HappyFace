@@ -17,12 +17,13 @@ public:
 	};
 
 public:
+	GLVertexArray() noexcept;
+
 	inline unsigned int getID() const { return m_id; }
 
-	void create() noexcept;
 	void bind() noexcept;
 	void attachBuffer(const BufferType type, const size_t size, const void* data, const DrawMode mode) noexcept;
-	void enableAttribute(const unsigned int index, const int size, const unsigned int offset, const void* data) noexcept;
+	void setVertexAttribPointers() noexcept;
 	void unbind() noexcept;
 	void deleteVAO() noexcept;
 

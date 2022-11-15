@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Entity.h"
 #include "GLShaderProgram.h"
+#include "Model.h"
 
 #include <unordered_map>
 
@@ -11,7 +11,7 @@ public:
 	void init(const std::pair<int, int>& viewport);
 	void update();
 	
-	void render(const Entity& entity);
+	void render(const Mesh& mesh);
 	void shutdown();
 private:
 	void defaultGLSettings() const;

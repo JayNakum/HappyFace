@@ -23,12 +23,14 @@ GLShader ResourceManager::loadShader(const std::string& filepath) const
 	return GLShader(type, shaderSource);
 }
 
-GLTexture ResourceManager::loadTexture(char const* path) const
+STBImage ResourceManager::loadTextureImage(char const* path) const
 {
-    int width, height, nrComponents;
-    unsigned char* data = stbi_load(path, &width, &height, &nrComponents, 0);
-    
-	return GLTexture(width, height, nrComponents, data);
+	int width, height, nrComponents;
+	unsigned char* data = stbi_load(path, &width, &height, &nrComponents, 0);
+	
+	if (!data) std::cerr << "Failed to load TEXTURE: " << path << std::endl;
+
+	return {width, height, nrComponents, data};
 }
 
 std::string ResourceManager::loadFile(const std::string& filepath) const

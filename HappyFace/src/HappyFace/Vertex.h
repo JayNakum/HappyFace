@@ -3,20 +3,15 @@
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 
+#define MAX_BONE_INFLUENCE 4
+
 struct Vertex {
-	Vertex() = default;
+    glm::vec3 position;
+    glm::vec3 normal;
+    glm::vec2 texCoords;
+    glm::vec3 tangent;
+    glm::vec3 bitangent;
 
-	Vertex(const glm::vec3& position, const glm::vec2& texcoords)
-		: Position(position), TexCoords(texcoords) {}
-
-	Vertex(const glm::vec3& position, const glm::vec2& texcoords, const glm::vec3& normal)
-		: Position(position), TexCoords(texcoords), Normal(normal) {}
-
-	Vertex(const glm::vec3& position, const glm::vec2& texcoords, const glm::vec3& normal, const glm::vec3& tangent)
-		: Position(position), TexCoords(texcoords), Normal(normal), Tangent(tangent) {}
-
-	glm::vec3 Position;
-	glm::vec2 TexCoords;
-	glm::vec3 Normal;
-	glm::vec3 Tangent;
+    int m_BoneIDs[MAX_BONE_INFLUENCE];
+    float m_Weights[MAX_BONE_INFLUENCE];
 };
