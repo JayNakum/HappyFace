@@ -1,11 +1,9 @@
 #pragma once
 
+#include <GLFW/glfw3.h>
+
 #include <functional>
 #include <array>
-
-#include <iostream>
-
-#include <GLFW/glfw3.h>
 
 class Input
 {

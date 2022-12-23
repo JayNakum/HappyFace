@@ -40,4 +40,3 @@ private:
 		bool showCursor;
 	}m_data;
 };
-

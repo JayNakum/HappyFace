@@ -2,21 +2,22 @@
 
 #include "Mesh.h"
 
-#include <string>
-#include <vector>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include <glm/glm.hpp>
+#include <string>
+#include <vector>
 
 class Model
 {
 public:
 	std::string directory;
 	std::vector<Mesh> meshes;
-	std::vector<GLTexture> textures_loaded;
+	std::vector<GL::Texture> textures_loaded;
 	bool gammaCorrection = false;
 	
 	Model(const std::string& path, bool gamma = false);
@@ -31,7 +32,7 @@ private:
 	void processNode(aiNode* node, const aiScene* scene);
 	Mesh processMesh(aiMesh* mesh, const aiScene* scene);
 
-	std::vector<GLTexture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
+	std::vector<GL::Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
 
 	glm::vec3 m_scale = {1.0f, 1.0f, 1.0f}, m_position;
 	

@@ -1,29 +1,29 @@
 #include "ResourceManager.h"
 
+#include <stb_image/stb_image.h>
+
 #include <iostream>
 #include <sstream>
 #include <fstream>
 
-#include <stb_image/stb_image.h>
-
-GLShader ResourceManager::loadShader(const std::string& filepath) const
+GL::Shader ResourceManager::loadShader(const std::string& filepath) const
 {
 	std::string shaderSource = loadFile(filepath);
 
-	GLShader::ShaderType type = GLShader::UNDEFINED;
+	GL::Shader::ShaderType type = GL::Shader::UNDEFINED;
 
 	std::string ext = filepath.substr(filepath.find_first_of("."));
 	if (ext == ".vs.glsl")
-		type = GLShader::VERTEX;
+		type = GL::Shader::VERTEX;
 	else if (ext == ".fs.glsl")
-		type = GLShader::FRAGMENT;
+		type = GL::Shader::FRAGMENT;
 	else if (ext == ".gs.glsl")
-		type = GLShader::GEOMETRY;
+		type = GL::Shader::GEOMETRY;
 
-	return GLShader(type, shaderSource);
+	return GL::Shader(type, shaderSource);
 }
 
-GLTexture ResourceManager::loadTexture(const std::string& dir, const std::string& path, const std::string& type) const
+GL::Texture ResourceManager::loadTexture(const std::string& dir, const std::string& path, const std::string& type) const
 {
 	stbi_set_flip_vertically_on_load(true);
     int width, height, nrComponents;
@@ -32,8 +32,9 @@ GLTexture ResourceManager::loadTexture(const std::string& dir, const std::string
 	if (!data)
 	{
 		std::cerr << "STB::ERROR::UNABLE TO LOAD TEXTURE" << std::endl;
+		std::cerr << path << std::endl;
 	}
-	return GLTexture(path, type, width, height, nrComponents, data);
+	return GL::Texture(path, type, width, height, nrComponents, data);
 }
 
 std::string ResourceManager::loadFile(const std::string& filepath) const

@@ -1,11 +1,12 @@
 #include "Renderer.h"
 
-#include <iostream>
-#include "Input.h"
-#include "ResourceManager.h"
+#include "Platform/Input.h"
+#include "Utility/ResourceManager.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
+#include <iostream>
 
 static float deltaTime = 0.0f;
 static float lastFrame = 0.0f;
@@ -65,13 +66,13 @@ void Renderer::renderScene(Scene& scene)
     handleCameraEvents(scene.camera);
 }
 
-void Renderer::renderModel(const Model& model, const GLShaderProgram& shader)
+void Renderer::renderModel(const Model& model, const GL::ShaderProgram& shader)
 {
     for (unsigned int i = 0; i < model.meshes.size(); i++)
         renderMesh(model.meshes[i], shader);
 }
 
-void Renderer::renderMesh(const Mesh& mesh, const GLShaderProgram& shader)
+void Renderer::renderMesh(const Mesh& mesh, const GL::ShaderProgram& shader)
 {
     unsigned int diffuseNr = 1;
     unsigned int specularNr = 1;

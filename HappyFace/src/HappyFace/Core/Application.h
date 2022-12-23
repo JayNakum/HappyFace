@@ -1,9 +1,10 @@
 #pragma once
 
 #include "Renderer.h"
-#include "Window.h"
 
-#include "Scene.h"
+#include "Platform/Window.h"
+
+#include "Components/Scene.h"
 
 class Application
 {

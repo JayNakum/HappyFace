@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-#include "ResourceManager.h"
+#include "Utility/ResourceManager.h"
 
 Scene::Scene()
 	: camera(glm::vec3(0.0f, 0.0f, 3.0f)) {}
@@ -17,12 +17,12 @@ void Scene::init()
 
 void Scene::addShader(const std::string& name, const std::vector<std::string>& shaderPaths)
 {
-	GLShaderProgram shaderProgram;
-	std::vector<GLShader> shadersList;
+	GL::ShaderProgram shaderProgram;
+	std::vector<GL::Shader> shadersList;
 
 	for (auto& path : shaderPaths)
 	{
-		GLShader shader = ResourceManager::getInstance().loadShader(path);
+		GL::Shader shader = ResourceManager::getInstance().loadShader(path);
 		shadersList.push_back(shader);
 		shaderProgram.attach(shader.getID());
 	}

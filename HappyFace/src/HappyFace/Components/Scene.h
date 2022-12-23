@@ -1,10 +1,10 @@
 #pragma once
 
-#include "GLShaderProgram.h"
-#include "GLShader.h"
-
 #include "Model.h"
 #include "Camera.h"
+
+#include "GL/ShaderProgram.h"
+#include "GL/Shader.h"
 
 #include <string>
 #include <unordered_map>
@@ -15,7 +15,7 @@ public:
 	Camera camera;
 	std::vector<Model> models;
 	
-	inline GLShaderProgram& getShader(const std::string& name) { return shaders.at(name); }
+	inline GL::ShaderProgram& getShader(const std::string& name) { return shaders.at(name); }
 
 	Scene();
 
@@ -28,5 +28,5 @@ protected:
 	std::vector<std::string> modelShader = { "resources/shaders/model.vs.glsl", "resources/shaders/model.fs.glsl" };
 
 private:
-	std::unordered_map<std::string, GLShaderProgram> shaders;
+	std::unordered_map<std::string, GL::ShaderProgram> shaders;
 };

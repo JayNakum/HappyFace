@@ -1,13 +1,13 @@
 #include "Application.h"
 
-#include "Input.h"
+#include "Platform/Input.h"
 
-#include "Model.h"
+#include "Components/Model.h"
 
-#include "ResourceManager.h"
+#include "Utility/ResourceManager.h"
 
-#include "GLShaderProgram.h"
-#include "GLShader.h"
+#include "GL/ShaderProgram.h"
+#include "GL/Shader.h"
 
 static void bindWindowToInput(GLFWwindow* window) {
 	const auto resizeCallback = [](GLFWwindow* w, auto width, auto height) {

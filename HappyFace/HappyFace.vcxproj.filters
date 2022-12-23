@@ -18,46 +18,46 @@
     <ClCompile Include="vendors\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\Window.cpp">
+    <ClCompile Include="src\HappyFace\Platform\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\Application.cpp">
+    <ClCompile Include="src\HappyFace\Core\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\Renderer.cpp">
+    <ClCompile Include="src\HappyFace\Core\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vendors\includes\glm\detail\glm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\GLVertexArray.cpp">
+    <ClCompile Include="src\HappyFace\GL\VertexArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\GLShader.cpp">
+    <ClCompile Include="src\HappyFace\GL\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\ResourceManager.cpp">
+    <ClCompile Include="src\HappyFace\Utility\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\GLShaderProgram.cpp">
+    <ClCompile Include="src\HappyFace\GL\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vendors\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\GLTexture.cpp">
+    <ClCompile Include="src\HappyFace\GL\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\Mesh.cpp">
+    <ClCompile Include="src\HappyFace\Components\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\Model.cpp">
+    <ClCompile Include="src\HappyFace\Components\Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\Scene.cpp">
+    <ClCompile Include="src\HappyFace\Components\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HappyFace\Camera.cpp">
+    <ClCompile Include="src\HappyFace\Components\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\TestApp.cpp">
@@ -77,19 +77,19 @@
     <ClInclude Include="vendors\includes\KHR\khrplatform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\Window.h">
+    <ClInclude Include="src\HappyFace\Platform\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\Application.h">
+    <ClInclude Include="src\HappyFace\Core\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\Input.h">
+    <ClInclude Include="src\HappyFace\Platform\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\Renderer.h">
+    <ClInclude Include="src\HappyFace\Core\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\Scene.h">
+    <ClInclude Include="src\HappyFace\Components\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vendors\includes\glm\detail\_features.hpp">
@@ -524,31 +524,31 @@
     <ClInclude Include="vendors\includes\glm\vector_relational.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\GLVertexArray.h">
+    <ClInclude Include="src\HappyFace\GL\VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\GLShader.h">
+    <ClInclude Include="src\HappyFace\GL\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\ResourceManager.h">
+    <ClInclude Include="src\HappyFace\Utility\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\GLShaderProgram.h">
+    <ClInclude Include="src\HappyFace\GL\ShaderProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\Vertex.h">
+    <ClInclude Include="src\HappyFace\GL\Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vendors\includes\stb_image\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\GLTexture.h">
+    <ClInclude Include="src\HappyFace\GL\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\Mesh.h">
+    <ClInclude Include="src\HappyFace\Components\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\Model.h">
+    <ClInclude Include="src\HappyFace\Components\Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vendors\includes\assimp\Compiler\poppack1.h">
@@ -797,13 +797,13 @@
     <ClInclude Include="vendors\includes\assimp\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\Camera.h">
+    <ClInclude Include="src\HappyFace\Components\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace.h">
+    <ClInclude Include="src\HappyFace\HappyFace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\HappyFace\EntryPoint.h">
+    <ClInclude Include="src\HappyFace\Core\EntryPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

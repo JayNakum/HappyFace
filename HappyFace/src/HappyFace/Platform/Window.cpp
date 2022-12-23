@@ -1,8 +1,8 @@
 #include "Window.h"
 
-#include <iostream>
-
 #include "Input.h"
+
+#include <iostream>
 
 void Window::update()
 {
@@ -24,7 +24,7 @@ void Window::update()
 GLFWwindow* Window::init(const std::string& title, const unsigned int width, const unsigned int height, const bool fullscreen)
 {
 	if (!glfwInit()) {
-		std::cerr << "Failed to start GLFW.";
+		std::cerr << "Failed to start GLFW." << std::endl;
 		std::abort();
 	}
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -40,7 +40,7 @@ GLFWwindow* Window::init(const std::string& title, const unsigned int width, con
 	}
 
 	if (!m_window) {
-		std::cerr << "Failed to create GLFW window.";
+		std::cerr << "Failed to create GLFW window." << std::endl;
 		std::abort();
 	}
 

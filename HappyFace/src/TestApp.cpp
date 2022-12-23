@@ -1,5 +1,4 @@
-
-#include "HappyFace.h"
+#include "HappyFace/HappyFace.h"
 
 class TestScene : public Scene
 {

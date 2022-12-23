@@ -1,9 +1,8 @@
 #include "Model.h"
 
-#include <iostream>
-#include <glm/gtc/matrix_transform.hpp>
+#include "Utility/ResourceManager.h"
 
-#include "ResourceManager.h"
+#include <iostream>
 
 Model::Model(const std::string& path, bool gamma)
 {
@@ -66,13 +65,13 @@ void Model::processNode(aiNode* node, const aiScene* scene)
 
 Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 {
-    std::vector<Vertex> vertices;
+    std::vector<GL::Vertex> vertices;
     std::vector<unsigned int> indices;
-    std::vector<GLTexture> textures;
+    std::vector<GL::Texture> textures;
 
     for (unsigned int i = 0; i < mesh->mNumVertices; i++)
     {
-        Vertex vertex;
+        GL::Vertex vertex;
         glm::vec3 vector;
 
         // positions
@@ -127,25 +126,25 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
     aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 
     // 1. diffuse maps
-    std::vector<GLTexture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+    std::vector<GL::Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
     textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
     // 2. specular maps
-    std::vector<GLTexture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+    std::vector<GL::Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
     textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
     // 3. normal maps
-    std::vector<GLTexture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
+    std::vector<GL::Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
     textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
     // 4. height maps
-    std::vector<GLTexture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
+    std::vector<GL::Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
     textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
     // return a mesh object created from the extracted mesh data
     return Mesh(vertices, indices, textures);
 }
 
-std::vector<GLTexture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)
+std::vector<GL::Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)
 {
-    std::vector<GLTexture> textures;
+    std::vector<GL::Texture> textures;
     for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
     {
         aiString str;
@@ -163,7 +162,7 @@ std::vector<GLTexture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureTyp
         }
         if (!skip)
         {
-            GLTexture texture = ResourceManager::getInstance().loadTexture(directory, str.C_Str(), typeName);
+            GL::Texture texture = ResourceManager::getInstance().loadTexture(directory, str.C_Str(), typeName);
             textures.push_back(texture);
             textures_loaded.push_back(texture);
         }
