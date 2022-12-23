@@ -45,7 +45,7 @@ static void handleCameraEvents(Camera& camera)
     }
 }
 
-void Renderer::renderScene(Scene& scene)
+void Renderer::renderScene(Happy::Scene& scene)
 {
     glm::mat4 view = scene.camera.getViewMatrix();
     glm::mat4 projection = glm::perspective(glm::radians(scene.camera.zoom), (float)m_viewportWidth / (float)m_viewportHeight, 0.1f, 100.0f);

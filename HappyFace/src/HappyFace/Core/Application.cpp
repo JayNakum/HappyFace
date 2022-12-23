@@ -26,42 +26,44 @@ static void bindWindowToInput(GLFWwindow* window) {
 	glfwSetCursorPosCallback(window, cursorPosCallback);
 }
 
-void Application::go()
-{
-	while (!m_window.shouldClose())
+namespace Happy {
+	void Application::go()
 	{
-		// DON'T change the order
-		m_renderer.update();
-		Input::getInstance().update();
-		m_window.update();
-		// 
+		while (!m_window.shouldClose())
+		{
+			// DON'T change the order
+			m_renderer.update();
+			Input::getInstance().update();
+			m_window.update();
+			// 
 
-		m_renderer.renderScene(*m_scene);
+			m_renderer.renderScene(*m_scene);
 
-		m_window.swapBuffers();
+			m_window.swapBuffers();
+		}
+		terminate();
 	}
-	terminate();
-}
 
-void Application::loadScene(Scene* scene)
-{
-	m_scene = scene;
-	m_scene->init();
-}
+	void Application::loadScene(Scene* scene)
+	{
+		m_scene = scene;
+		m_scene->init();
+	}
 
-Application::Application()
-{
-	GLFWwindow* window = m_window.init();
-	bindWindowToInput(window);
-	m_window.setVsync(true);
+	Application::Application()
+	{
+		GLFWwindow* window = m_window.init();
+		bindWindowToInput(window);
+		m_window.setVsync(true);
 
-	m_renderer.init(m_window.getDimensions());
-}
+		m_renderer.init(m_window.getDimensions());
+	}
 
-void Application::terminate()
-{
-	m_scene->deleteScene();
-	delete m_scene;
-	m_window.shutdown();
-	m_renderer.shutdown();
+	void Application::terminate()
+	{
+		m_scene->deleteScene();
+		delete m_scene;
+		m_window.shutdown();
+		m_renderer.shutdown();
+	}
 }

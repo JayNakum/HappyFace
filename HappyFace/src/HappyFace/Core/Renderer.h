@@ -14,7 +14,7 @@ public:
 	void init(const std::pair<int, int>& viewport);
 	void update();
 	
-	void renderScene(Scene& scene);
+	void renderScene(Happy::Scene& scene);
 	void renderModel(const Model& model, const GL::ShaderProgram& shader);
 	void renderMesh(const Mesh& mesh, const GL::ShaderProgram& shader);
 

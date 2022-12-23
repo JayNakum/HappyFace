@@ -1,6 +1,6 @@
 #pragma once
 
-extern Application* createApplication();
+extern Happy::Application* createApplication();
 
 int main()
 {

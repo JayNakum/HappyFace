@@ -1,6 +1,6 @@
 #include "HappyFace/HappyFace.h"
 
-class TestScene : public Scene
+class TestScene : public Happy::Scene
 {
 public:
 	TestScene()
@@ -10,7 +10,7 @@ public:
 	}
 };
 
-class TestApp : public Application
+class TestApp : public Happy::Application
 {
 public:
 	TestApp()
@@ -19,7 +19,7 @@ public:
 	}
 };
 
-Application* createApplication()
+Happy::Application* createApplication()
 {
 	return new TestApp();
 }
