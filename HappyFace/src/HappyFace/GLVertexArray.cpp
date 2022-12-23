@@ -1,11 +1,11 @@
 #include "GLVertexArray.h"
 
-GLVertexArray::GLVertexArray() noexcept
+void GLVertexArray::create() noexcept
 {
 	glGenVertexArrays(1, &m_id);
 }
 
-void GLVertexArray::bind() noexcept
+void GLVertexArray::bind() const noexcept
 {
 	glBindVertexArray(m_id);
 }
@@ -20,7 +20,13 @@ void GLVertexArray::attachBuffer(const BufferType type, const size_t size, const
 	glBufferData(type, size, data, mode);
 }
 
-void GLVertexArray::unbind() noexcept
+void GLVertexArray::enableAttribute(const unsigned int index, const int size, AttribType type, const unsigned int offset, const void* data) noexcept
+{
+	glEnableVertexAttribArray(index);
+	glVertexAttribPointer(index, size, type, GL_FALSE, offset, data);
+}
+
+void GLVertexArray::unbind() const noexcept
 {
 	glBindVertexArray(0);
 }

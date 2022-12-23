@@ -32,7 +32,6 @@ private:
 	GLFWwindow* m_window{ nullptr };
 
 	struct WindowData {
-
 		std::string title;
 		unsigned int width;
 		unsigned int height;
@@ -40,6 +39,5 @@ private:
 		bool shouldWindowClose;
 		bool showCursor;
 	}m_data;
-
 };
 

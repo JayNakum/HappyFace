@@ -1,28 +1,115 @@
 #include "Renderer.h"
 
+#include <iostream>
 #include "Input.h"
 #include "ResourceManager.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <iostream>
+static float deltaTime = 0.0f;
+static float lastFrame = 0.0f;
 
-void Renderer::render(const Mesh& mesh)
+static void handleCameraEvents(Camera& camera)
 {
-    static auto& meshShader = m_shaderCache.at("mesh");
+    Input& inputHandler = Input::getInstance();
 
-    mesh.getTexture().bind();
-    meshShader.use();
-    meshShader.setInt("texture1", 0);
-    mesh.getVAO().bind();
-    glDrawElements(GL_TRIANGLES, mesh.getIndicesCount(), GL_UNSIGNED_INT, 0);
-    mesh.getVAO().unbind();
-    mesh.getTexture().unbind();
+    if (inputHandler.isKeyHeld(Input::W))
+        camera.processKeyboard(camera.FORWARD, deltaTime);
+    if (inputHandler.isKeyHeld(Input::A))
+        camera.processKeyboard(camera.LEFT, deltaTime);
+    if (inputHandler.isKeyHeld(Input::S))
+        camera.processKeyboard(camera.BACKWARD, deltaTime);
+    if (inputHandler.isKeyHeld(Input::D))
+        camera.processKeyboard(camera.RIGHT, deltaTime);
+
+
+    if (inputHandler.isMouseMoved())
+    {
+        float xpos = static_cast<float>(inputHandler.getMouseX());
+        float ypos = static_cast<float>(inputHandler.getMouseY());
+        if (inputHandler.firstMouse)
+        {
+            inputHandler.lastX = xpos;
+            inputHandler.lastY = ypos;
+            inputHandler.firstMouse = false;
+        }
+
+        float xoffset = xpos - inputHandler.lastX;
+        float yoffset = inputHandler.lastY - ypos;
+
+        inputHandler.lastX = xpos;
+        inputHandler.lastY = ypos;
+        camera.processMouseMovement(xoffset, yoffset);
+    }
+}
+
+void Renderer::renderScene(Scene& scene)
+{
+    glm::mat4 view = scene.camera.getViewMatrix();
+    glm::mat4 projection = glm::perspective(glm::radians(scene.camera.zoom), (float)m_viewportWidth / (float)m_viewportHeight, 0.1f, 100.0f);
+
+    auto& modelShader = scene.getShader("modelShader");
+    modelShader.use();
+
+    modelShader.setMat4("view", view);
+    modelShader.setMat4("projection", projection);
+
+    for (auto& model : scene.models)
+    {
+        modelShader.setMat4("model", model.getModelMatrix());
+        renderModel(model, modelShader);
+    }
+    modelShader.unUse();
+
+    handleCameraEvents(scene.camera);
+
+}
+
+void Renderer::renderModel(const Model& model, const GLShaderProgram& shader)
+{
+    for (unsigned int i = 0; i < model.meshes.size(); i++)
+        renderMesh(model.meshes[i], shader);
+}
+
+void Renderer::renderMesh(const Mesh& mesh, const GLShaderProgram& shader)
+{
+    unsigned int diffuseNr = 1;
+    unsigned int specularNr = 1;
+    unsigned int normalNr = 1;
+    unsigned int heightNr = 1;
+    for (unsigned int i = 0; i < mesh.textures.size(); i++)
+    {
+        glActiveTexture(GL_TEXTURE0 + i);
+
+        std::string number;
+        std::string name = mesh.textures[i].type;
+        if (name == "texture_diffuse")
+            number = std::to_string(diffuseNr++);
+        else if (name == "texture_specular")
+            number = std::to_string(specularNr++);
+        else if (name == "texture_normal")
+            number = std::to_string(normalNr++);
+        else if (name == "texture_height")
+            number = std::to_string(heightNr++);
+
+        shader.setInt((name + number).c_str(), i);
+        mesh.textures[i].bind(i);
+    }
+
+    mesh.VAO.bind();
+    glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(mesh.indices.size()), GL_UNSIGNED_INT, 0);
+    mesh.VAO.unbind();
+    glActiveTexture(GL_TEXTURE0);
 }
 
 void Renderer::update()
 {
+    float currentFrame = static_cast<float>(glfwGetTime());
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
+
+    defaultGLSettings();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (Input::getInstance().isWindowResized()) {
@@ -45,8 +132,6 @@ void Renderer::init(const std::pair<int, int>& viewport)
     m_viewportHeight = viewport.second;
 
     defaultGLSettings();
-
-    compileShaders();
 }
 
 void Renderer::defaultGLSettings() const
@@ -57,7 +142,6 @@ void Renderer::defaultGLSettings() const
     glFrontFace(GL_CCW);
     glCullFace(GL_BACK);
     glEnable(GL_CULL_FACE);
-    glEnable(GL_DEPTH_TEST);
     glDepthMask(GL_TRUE);
     glDepthFunc(GL_LEQUAL);
     glEnable(GL_BLEND);
@@ -66,27 +150,9 @@ void Renderer::defaultGLSettings() const
     glViewport(0, 0, (int)m_viewportWidth, (int)m_viewportHeight);
 }
 
-void Renderer::compileShaders()
-{
-    GLShaderProgram mesh;
-    GLShader vertexShader = ResourceManager::getInstance().loadShader("res/shaders/test_shader.vs.glsl");
-    GLShader fragmentShader = ResourceManager::getInstance().loadShader("res/shaders/test_shader.fs.glsl");
-
-    mesh.attach(vertexShader.getID());
-    mesh.attach(fragmentShader.getID());
-    mesh.linkProgram();
-
-    vertexShader.deleteShader();
-    fragmentShader.deleteShader();
-
-    m_shaderCache.insert({"mesh", mesh});
-}
-
 void Renderer::shutdown()
 {
     for (auto& program : m_shaderCache)
-    {
         program.second.deleteProgram();
-    }
     m_shaderCache.clear();
 }

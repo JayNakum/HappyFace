@@ -7,19 +7,15 @@
 void Window::update()
 {
 	glfwPollEvents();
-
-	if (Input::getInstance().isKeyPressed(GLFW_KEY_TAB)) {
-		m_data.showCursor = !m_data.showCursor;
-		if (m_data.showCursor) {
+	if (Input::getInstance().isKeyPressed(Input::TAB)) {
+		if (m_data.showCursor)
 			enableCursor();
-		}
-		else {
+		else
 			disableCursor();
-		}
-
+		m_data.showCursor = !m_data.showCursor;
 	}
 
-	if (glfwWindowShouldClose(m_window) || Input::getInstance().isKeyPressed(GLFW_KEY_ESCAPE)) {
+	if (glfwWindowShouldClose(m_window) || Input::getInstance().isKeyPressed(Input::ESC)) {
 		m_data.shouldWindowClose = true;
 		glfwSetWindowShouldClose(m_window, true);
 	}

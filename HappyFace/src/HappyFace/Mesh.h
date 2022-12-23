@@ -1,38 +1,22 @@
 #pragma once
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include "Vertex.h"
+#include "GLVertexArray.h"
+#include "GLTexture.h"
 
 #include <string>
 #include <vector>
 
-#include "GLVertexArray.h"
-#include "Vertex.h"
-
-struct Texture {
-    unsigned int id;
-    std::string type;
-    std::string path;
-};
-
-class Mesh {
+class Mesh
+{
 public:
-    std::vector<Vertex>       vertices;
+    std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
-    std::vector<Texture>      textures;
-    
+    std::vector<GLTexture> textures;
     GLVertexArray VAO;
 
-    Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures)
-    {
-        this->vertices = vertices;
-        this->indices = indices;
-        this->textures = textures;
-        setupMesh();
-    }
-
+    Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<GLTexture> textures);
     void deleteMesh();
-
 private:
     void setupMesh();
 };

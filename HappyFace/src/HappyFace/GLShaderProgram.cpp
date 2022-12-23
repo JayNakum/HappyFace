@@ -30,9 +30,14 @@ void GLShaderProgram::linkProgram()
     }
 }
 
-void GLShaderProgram::use()
+void GLShaderProgram::use() const
 {
     glUseProgram(m_id);
+}
+
+void GLShaderProgram::unUse() const
+{
+    glUseProgram(0);
 }
 
 void GLShaderProgram::setBool(const std::string& name, bool value) const

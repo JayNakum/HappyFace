@@ -5,15 +5,34 @@
 
 #include <iostream>
 
+#include <GLFW/glfw3.h>
+
 class Input
 {
-	Input() {
+	Input() 
+	{
 		std::fill(m_keys.begin(), m_keys.end(), false);
 		std::fill(m_prevKeys.begin(), m_prevKeys.end(), false);
-	};
+	}
 	~Input() = default;
+
 public:
-	static Input& getInstance() {
+
+	float lastX = (float)m_windowWidth / 2.0;
+	float lastY = (float)m_windowHeight / 2.0;
+	bool firstMouse = true;
+
+	enum Key : int{
+		W = GLFW_KEY_W,
+		A = GLFW_KEY_A,
+		S = GLFW_KEY_S,
+		D = GLFW_KEY_D,
+		TAB = GLFW_KEY_TAB,
+		ESC = GLFW_KEY_ESCAPE
+	};
+	
+	static Input& getInstance() 
+	{
 		static Input instance;
 		return instance;
 	}
@@ -21,13 +40,16 @@ public:
 	Input(const Input&) = delete;
 	Input& operator=(const Input&) = delete;
 
-	inline bool isKeyPressed(const std::size_t key) const noexcept {
+	inline bool isKeyPressed(const std::size_t key) const noexcept 
+	{
 		return m_keys[key] && !m_prevKeys[key];
 	}
-	inline bool isKeyHeld(const std::size_t key) const noexcept {
+	inline bool isKeyHeld(const std::size_t key) const noexcept 
+	{
 		return m_keys[key];
 	}
-	std::function<void(int, int, int, int)> keyPressed = [&](auto key, auto scancode, auto action, auto mode) {
+	std::function<void(int, int, int, int)> keyPressed = [&](auto key, auto scancode, auto action, auto mode) 
+	{
 		if (key >= 0 && key < 1024) 
 		{
 			switch (action) 
@@ -46,7 +68,8 @@ public:
 	inline bool isMouseMoved() const noexcept { return m_mouseMoved; }
 	inline double getMouseX() const noexcept { return m_mouseX; }
 	inline double getMouseY() const noexcept { return m_mouseY; }
-	std::function<void(double, double)> mouseMoved = [&](auto xPos, auto yPos) {
+	std::function<void(double, double)> mouseMoved = [&](auto xPos, auto yPos) 
+	{
 		this->m_mouseMoved = true;
 		this->m_mouseX = xPos;
 		this->m_mouseY = yPos;
@@ -56,13 +79,15 @@ public:
 	inline bool isWindowResized() const noexcept { return m_windowResized; }
 	inline int getWindowWidth() const noexcept { return (int)m_windowWidth; }
 	inline int getWindowHeight() const noexcept { return (int)m_windowHeight; }
-	std::function<void(int, int)> windowResized = [&](auto width, auto height) {
+	std::function<void(int, int)> windowResized = [&](auto width, auto height) 
+	{
 		this->m_windowResized = true;
 		this->m_windowWidth = width;
 		this->m_windowHeight = height;
 	};
 
-	void update() {
+	void update() 
+	{
 		m_mouseMoved = false;
 		m_windowResized = false;
 

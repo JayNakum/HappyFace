@@ -1,10 +1,10 @@
 #pragma once
 
-#include "GLShader.h"
-#include "GLTexture.h"
-
 #include <string>
 #include <filesystem>
+
+#include "GLShader.h"
+#include "GLTexture.h"
 
 class ResourceManager
 {
@@ -22,7 +22,7 @@ public:
 	ResourceManager& operator=(const ResourceManager&) = delete;
 
 	GLShader loadShader(const std::string& filepath) const;
-	STBImage loadTextureImage(char const* path) const;
+	GLTexture loadTexture(const std::string& dir, const std::string& path, const std::string& type = "texture_diffuse") const;
 	std::string loadFile(const std::string& filepath) const;
 
 };

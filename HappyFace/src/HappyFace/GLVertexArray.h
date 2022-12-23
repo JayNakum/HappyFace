@@ -16,15 +16,19 @@ public:
 		STREAM = GL_STREAM_DRAW
 	};
 
-public:
-	GLVertexArray() noexcept;
+	enum AttribType : int {
+		INT = GL_INT,
+		FLOAT = GL_FLOAT
+	};
 
+public:
 	inline unsigned int getID() const { return m_id; }
 
-	void bind() noexcept;
+	void create() noexcept;
+	void bind() const noexcept;
 	void attachBuffer(const BufferType type, const size_t size, const void* data, const DrawMode mode) noexcept;
-	void setVertexAttribPointers() noexcept;
-	void unbind() noexcept;
+	void enableAttribute(const unsigned int index, const int size, AttribType type, const unsigned int offset, const void* data) noexcept;
+	void unbind() const noexcept;
 	void deleteVAO() noexcept;
 
 private:

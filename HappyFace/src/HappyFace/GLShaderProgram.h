@@ -11,14 +11,14 @@ public:
     GLShaderProgram();
 
     inline unsigned int getProgramID() const { return m_id; }
+    void use() const;
+    void unUse() const;
 
 	void attach(unsigned int shaderID);
 	void linkProgram();
     void deleteProgram();
 
 public:
-    void use();
-
     void setBool(const std::string& name, bool value) const;
 
     void setInt(const std::string& name, int value) const;

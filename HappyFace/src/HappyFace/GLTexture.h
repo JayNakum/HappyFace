@@ -3,13 +3,6 @@
 #include <string>
 #include <glad/glad.h>
 
-struct STBImage {
-    int width;
-    int height;
-    int bpp;
-    unsigned char* pixelBuffer;
-};
-
 class GLTexture
 {
 public:
@@ -20,10 +13,19 @@ public:
         RGBA = GL_RGBA
     };
 
-    GLTexture();
+    GLTexture(
+        const std::string& path,
+        const std::string& type,
+        const int width,
+        const int height,
+        const int bpp,
+        unsigned char* pixelBuffer
+    );
+
+    std::string path;
+    std::string type;
 
 public:
-    void init(const STBImage& texture);
     void bind(unsigned int slot = 0) const;
     void unbind() const;
     void deleteTexture() const;
@@ -32,6 +34,6 @@ public:
 
 private:
     unsigned int m_id = 0;
-    int m_width = 0, m_height = 0, m_nrComponents = 0;
-    Format m_format = RGBA;
+    int m_width, m_height, m_nrComponents;
+    Format m_format;
 };

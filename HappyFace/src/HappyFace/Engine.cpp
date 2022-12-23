@@ -1,16 +1,15 @@
 #include "Engine.h"
 
-#include <vector>
-#include <unordered_map>
-
 #include "Input.h"
-#include "Vertex.h"
-#include "Mesh.h"
 
-#include "GLTexture.h"
+#include "Model.h"
+
 #include "ResourceManager.h"
 
-static void connectWindowInstanceToInput(GLFWwindow* window) {
+#include "GLShaderProgram.h"
+#include "GLShader.h"
+
+static void bindWindowToInput(GLFWwindow* window) {
 	const auto resizeCallback = [](GLFWwindow* w, auto width, auto height) {
 		Input::getInstance().windowResized(width, height);
 	};
@@ -29,37 +28,32 @@ static void connectWindowInstanceToInput(GLFWwindow* window) {
 
 void Engine::go()
 {
-	std::vector<Vertex> vertices = {
-		Vertex(glm::vec3(0.5f, 0.5f, 0.0f), glm::vec2(1.0f, 1.0f)),
-		Vertex(glm::vec3(0.5f, -0.5f, 0.0f), glm::vec2(1.0f, 0.0f)),
-		Vertex(glm::vec3(-0.5f, -0.5f, 0.0f), glm::vec2(0.0f, 0.0f)),
-		Vertex(glm::vec3(-0.5f, 0.5f, 0.0f), glm::vec2(0.0f, 1.0f)),
-	};
-	std::vector<unsigned int> indices = {
-		0, 1, 3,
-		1, 2, 3
-	};
+	Model backpack("resources/objects/backpack/backpack.obj");
 
-	GLTexture texture;
-	texture.init(ResourceManager::getInstance().loadTextureImage("res/textures/wall.jpg"));
-	Mesh myMesh(vertices, indices, texture);
+	backpack.translate({ 1.0f, 1.0f, 0.0f });
+	backpack.scale({ 1.0f, 1.0f, 1.0f });
+	backpack.rotate(0.0f, { 1.0f, 0.0f, 0.0f });
 
-	Model myModel;
-	myModel.attachMesh(myMesh);
+	Scene scene;
+	scene.addModel(backpack);
+
+	std::vector<std::string> modelShader = { "resources/shaders/model.vs.glsl", "resources/shaders/model.fs.glsl" };
+	scene.addShader("modelShader", modelShader);
 
 	while (!m_window.shouldClose())
 	{
-		Input::getInstance().update();
+		// DON'T change the order
 		m_renderer.update();
+		Input::getInstance().update();
 		m_window.update();
+		// 
 
-		m_renderer.render(myMesh);
+		m_renderer.renderScene(scene);
 
 		m_window.swapBuffers();
 	}
 
-	texture.deleteTexture();
-	myModel.deleteModel();
+	scene.deleteScene();
 
 	terminate();
 }
@@ -67,14 +61,10 @@ void Engine::go()
 Engine::Engine()
 {
 	GLFWwindow* window = m_window.init();
-	connectWindowInstanceToInput(window);
+	bindWindowToInput(window);
 	m_window.setVsync(true);
 
 	m_renderer.init(m_window.getDimensions());
-}
-
-void Engine::loadScene()
-{
 }
 
 void Engine::terminate()
