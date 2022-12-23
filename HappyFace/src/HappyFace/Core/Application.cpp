@@ -52,7 +52,7 @@ namespace Happy {
 
 	Application::Application()
 	{
-		GLFWwindow* window = m_window.init();
+		GLFWwindow* window = m_window.init(title);
 		bindWindowToInput(window);
 		m_window.setVsync(true);
 

@@ -23,6 +23,8 @@ namespace Happy {
 		void init();
 		void addShader(const std::string& name, const std::vector<std::string>& shaders);
 		void addModel(const Model& model);
+		// TODO: void addLight();
+
 		void deleteScene();
 
 	protected:

@@ -11,7 +11,7 @@ public:
 	Window() noexcept = default;
 	void update();
 
-	GLFWwindow* init(const std::string& title = "LearnOpenGL.com", const unsigned int width = 800, const unsigned int height = 600, const bool fullscreen = false);
+	GLFWwindow* init(const std::string& title, const unsigned int width = 800, const unsigned int height = 600, const bool fullscreen = false);
 	void shutdown() const;
 
 	void swapBuffers() const;
