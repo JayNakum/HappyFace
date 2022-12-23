@@ -63,7 +63,6 @@ void Renderer::renderScene(Scene& scene)
     modelShader.unUse();
 
     handleCameraEvents(scene.camera);
-
 }
 
 void Renderer::renderModel(const Model& model, const GLShaderProgram& shader)

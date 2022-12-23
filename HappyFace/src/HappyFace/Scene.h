@@ -19,10 +19,13 @@ public:
 
 	Scene();
 
+	void init();
 	void addShader(const std::string& name, const std::vector<std::string>& shaders);
 	void addModel(const Model& model);
 	void deleteScene();
 
+protected:
+	std::vector<std::string> modelShader = { "resources/shaders/model.vs.glsl", "resources/shaders/model.fs.glsl" };
 
 private:
 	std::unordered_map<std::string, GLShaderProgram> shaders;

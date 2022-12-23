@@ -3,14 +3,16 @@
 #include "ResourceManager.h"
 
 Scene::Scene()
-	: camera(glm::vec3(0.0f, 0.0f, 3.0f)) 
-{
-	
-}
+	: camera(glm::vec3(0.0f, 0.0f, 3.0f)) {}
 
 void Scene::addModel(const Model& model)
 {
 	models.push_back(model);
+}
+
+void Scene::init()
+{
+	addShader("modelShader", modelShader);
 }
 
 void Scene::addShader(const std::string& name, const std::vector<std::string>& shaderPaths)

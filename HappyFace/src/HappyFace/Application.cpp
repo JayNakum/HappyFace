@@ -1,4 +1,4 @@
-#include "Engine.h"
+#include "Application.h"
 
 #include "Input.h"
 
@@ -26,20 +26,8 @@ static void bindWindowToInput(GLFWwindow* window) {
 	glfwSetCursorPosCallback(window, cursorPosCallback);
 }
 
-void Engine::go()
+void Application::go()
 {
-	Model backpack("resources/objects/backpack/backpack.obj");
-
-	backpack.translate({ 1.0f, 1.0f, 0.0f });
-	backpack.scale({ 1.0f, 1.0f, 1.0f });
-	backpack.rotate(0.0f, { 1.0f, 0.0f, 0.0f });
-
-	Scene scene;
-	scene.addModel(backpack);
-
-	std::vector<std::string> modelShader = { "resources/shaders/model.vs.glsl", "resources/shaders/model.fs.glsl" };
-	scene.addShader("modelShader", modelShader);
-
 	while (!m_window.shouldClose())
 	{
 		// DON'T change the order
@@ -48,17 +36,20 @@ void Engine::go()
 		m_window.update();
 		// 
 
-		m_renderer.renderScene(scene);
+		m_renderer.renderScene(*m_scene);
 
 		m_window.swapBuffers();
 	}
-
-	scene.deleteScene();
-
 	terminate();
 }
 
-Engine::Engine()
+void Application::loadScene(Scene* scene)
+{
+	m_scene = scene;
+	m_scene->init();
+}
+
+Application::Application()
 {
 	GLFWwindow* window = m_window.init();
 	bindWindowToInput(window);
@@ -67,8 +58,10 @@ Engine::Engine()
 	m_renderer.init(m_window.getDimensions());
 }
 
-void Engine::terminate()
+void Application::terminate()
 {
+	m_scene->deleteScene();
+	delete m_scene;
 	m_window.shutdown();
 	m_renderer.shutdown();
 }

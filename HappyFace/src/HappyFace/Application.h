@@ -5,14 +5,18 @@
 
 #include "Scene.h"
 
-class Engine
+class Application
 {
 public:
-	Engine();
+	Application();
 	void go();
 
-	void terminate();
+protected:
+	void loadScene(Scene* scene);
+
 private:
+	void terminate();
+	Scene* m_scene = nullptr;
 	Renderer m_renderer;
 	Window m_window;
 };

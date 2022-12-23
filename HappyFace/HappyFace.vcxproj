@@ -168,10 +168,9 @@
     <ClCompile Include="src\HappyFace\GLShader.cpp" />
     <ClCompile Include="src\HappyFace\GLVertexArray.cpp" />
     <ClCompile Include="src\HappyFace\Renderer.cpp" />
-    <ClCompile Include="src\HappyFace\Engine.cpp" />
+    <ClCompile Include="src\HappyFace\Application.cpp" />
     <ClCompile Include="src\HappyFace\Scene.cpp" />
-    <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\TestScene.cpp" />
+    <ClCompile Include="src\TestApp.cpp" />
     <ClCompile Include="vendors\glad.c" />
     <ClCompile Include="src\HappyFace\Window.cpp" />
     <ClCompile Include="vendors\includes\glm\detail\glm.cpp" />
@@ -179,6 +178,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\HappyFace\Camera.h" />
+    <ClInclude Include="src\HappyFace\EntryPoint.h" />
+    <ClInclude Include="src\HappyFace.h" />
     <ClInclude Include="src\HappyFace\Model.h" />
     <ClInclude Include="src\HappyFace\Mesh.h" />
     <ClInclude Include="src\HappyFace\GLTexture.h" />
@@ -187,11 +188,10 @@
     <ClInclude Include="src\HappyFace\GLShader.h" />
     <ClInclude Include="src\HappyFace\GLVertexArray.h" />
     <ClInclude Include="src\HappyFace\Renderer.h" />
-    <ClInclude Include="src\HappyFace\Engine.h" />
+    <ClInclude Include="src\HappyFace\Application.h" />
     <ClInclude Include="src\HappyFace\Input.h" />
     <ClInclude Include="src\HappyFace\Scene.h" />
     <ClInclude Include="src\HappyFace\Vertex.h" />
-    <ClInclude Include="src\TestScene.h" />
     <ClInclude Include="vendors\includes\assimp\aabb.h" />
     <ClInclude Include="vendors\includes\assimp\ai_assert.h" />
     <ClInclude Include="vendors\includes\assimp\anim.h" />
