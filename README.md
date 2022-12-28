@@ -1,4 +1,4 @@
-# [HappyFace](https://github.com/JayNakum/HappyFace) ![Star](https://img.shields.io/github/stars/JayNakum/HappyFace?style=social)
+# [HappyFace](https://github.com/JayNakum/HappyFace) ![Star](https://img.shields.io/github/stars/JayNakum/HappyFace?style=social)
 A Scene Based OpenGL Renderer(sort of) written in C++. It implements every concept that I have been learning.
 It's primarily a playground for me to try to implement different graphics programming techniques.
 I will keep adding new features to this framework as I will learn new topics in future. Eventually, the plan is to create a "scene-based" engine, where you can load up some model(s), add some fancy lights, and virtually explore it.
