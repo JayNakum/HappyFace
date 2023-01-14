@@ -1,10 +1,9 @@
 #pragma once
 
 #include "Renderer.h"
+#include "Scene.h"
 
 #include "Platform/Window.h"
-
-#include "Components/Scene.h"
 
 namespace Happy {
 	class Application

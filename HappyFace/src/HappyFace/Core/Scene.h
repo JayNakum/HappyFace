@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Model.h"
-#include "Camera.h"
+#include "Components/Model.h"
+#include "Components/Camera.h"
 
 #include "GL/ShaderProgram.h"
 #include "GL/Shader.h"
@@ -21,7 +21,7 @@ namespace Happy {
 		Scene();
 
 		void init();
-		void addShader(const std::string& name, const std::vector<std::string>& shaders);
+
 		void addModel(const Model& model);
 		// TODO: void addLight();
 
@@ -29,6 +29,7 @@ namespace Happy {
 
 	protected:
 		std::vector<std::string> modelShader = { "resources/shaders/model.vs.glsl", "resources/shaders/model.fs.glsl" };
+		void addShader(const std::string& name, const std::vector<std::string>& shaders);
 
 	private:
 		std::unordered_map<std::string, GL::ShaderProgram> shaders;

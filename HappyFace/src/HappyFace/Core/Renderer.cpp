@@ -15,15 +15,18 @@ static void handleCameraEvents(Camera& camera)
 {
     Input& inputHandler = Input::getInstance();
 
-    if (inputHandler.isKeyHeld(Input::W))
+    if (inputHandler.isKeyHeld(Input::UP))
         camera.processKeyboard(camera.FORWARD, deltaTime);
-    if (inputHandler.isKeyHeld(Input::A))
+    if (inputHandler.isKeyHeld(Input::LEFT))
         camera.processKeyboard(camera.LEFT, deltaTime);
-    if (inputHandler.isKeyHeld(Input::S))
+    if (inputHandler.isKeyHeld(Input::DOWN))
         camera.processKeyboard(camera.BACKWARD, deltaTime);
-    if (inputHandler.isKeyHeld(Input::D))
+    if (inputHandler.isKeyHeld(Input::RIGHT))
         camera.processKeyboard(camera.RIGHT, deltaTime);
-
+    if (inputHandler.isKeyHeld(Input::RSHIFT))
+        camera.processKeyboard(camera.UP, deltaTime);
+    if (inputHandler.isKeyHeld(Input::RCTRL))
+        camera.processKeyboard(camera.DOWN, deltaTime);
 
     if (inputHandler.isMouseMoved())
     {

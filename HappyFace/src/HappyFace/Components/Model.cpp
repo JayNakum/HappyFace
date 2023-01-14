@@ -25,8 +25,8 @@ void Model::scale(const glm::vec3& scale)
     m_scale = scale;
 }
 
-void Model::rotate(const float radians, const glm::vec3& axis) {
-    m_radians = radians;
+void Model::rotate(const float angle, const glm::vec3& axis) {
+    m_radians = glm::radians(angle);
     m_axis = axis;
 }
 void Model::translate(const glm::vec3& pos) {
@@ -37,7 +37,8 @@ glm::mat4 Model::getModelMatrix() const
 {
     const auto scale = glm::scale(glm::mat4(1.0f), m_scale);
     const auto translate = glm::translate(glm::mat4(1.0f), m_position);
-    return scale * translate;
+    const auto rotate = glm::rotate(translate, m_radians, m_axis);
+    return scale * rotate;
 }
 
 void Model::deleteModel()

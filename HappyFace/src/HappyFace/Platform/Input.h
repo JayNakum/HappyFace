@@ -25,6 +25,15 @@ public:
 		A = GLFW_KEY_A,
 		S = GLFW_KEY_S,
 		D = GLFW_KEY_D,
+		SPACE = GLFW_KEY_SPACE,
+
+		UP = GLFW_KEY_UP,
+		LEFT = GLFW_KEY_LEFT,
+		DOWN = GLFW_KEY_DOWN,
+		RIGHT = GLFW_KEY_RIGHT,
+		RSHIFT = GLFW_KEY_RIGHT_SHIFT,
+		RCTRL = GLFW_KEY_RIGHT_CONTROL,
+		
 		TAB = GLFW_KEY_TAB,
 		ESC = GLFW_KEY_ESCAPE
 	};
@@ -38,6 +47,7 @@ public:
 	Input(const Input&) = delete;
 	Input& operator=(const Input&) = delete;
 
+	// Keyboard
 	inline bool isKeyPressed(const std::size_t key) const noexcept 
 	{
 		return m_keys[key] && !m_prevKeys[key];
@@ -101,7 +111,7 @@ private:
 	bool m_mouseMoved = false;
 	double m_mouseX, m_mouseY;
 
-	// Resize
+	// Window
 	bool m_windowResized = false;
 	std::size_t m_windowWidth, m_windowHeight;
 };

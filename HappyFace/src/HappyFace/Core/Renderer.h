@@ -2,9 +2,7 @@
 
 #include "GL/ShaderProgram.h"
 
-#include "Components/Scene.h"
-#include "Components/Model.h"
-#include "Components/Mesh.h"
+#include "Scene.h"
 
 #include <unordered_map>
 

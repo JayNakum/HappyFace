@@ -24,7 +24,7 @@ public:
 	void deleteModel();
 
 	void scale(const glm::vec3& scale);
-	void rotate(const float radians, const glm::vec3& axis);
+	void rotate(const float angle, const glm::vec3& axis);
 	void translate(const glm::vec3& pos);
 	glm::mat4 getModelMatrix() const;
 
