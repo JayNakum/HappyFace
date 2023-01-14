@@ -6,7 +6,7 @@ The primary purpose of creating this file was to have a one stop destination for
 ***
 
 **TestApp.cpp** is what you need to write to use the renderer.
-```C++
+```cpp
 #include "HappyFace/HappyFace.h"
 
 class TestScene : public Happy::Scene
@@ -36,7 +36,7 @@ Happy::Application* createApplication()
 ```
 ***
 **HappyFace.h** is the only file needed to be included to use the renderer.
-```C++
+```cpp
 #pragma once
 
 #include "Core/Application.h"
@@ -45,7 +45,7 @@ Happy::Application* createApplication()
 ```
 ***
 **Core/EntryPoint.h** is the file containing the main method. This is seperated from the client side code to let the renderer have a full control over the application.
-```C++
+```cpp
 #pragma once
 
 extern Happy::Application* createApplication();
@@ -59,7 +59,7 @@ int main()
 ```
 
 **Core/Application.h** is the main application class where everything is initialized and managed. The Application class has the main loop and it also contains the ```loadScene()``` which will be called by the child class.
-```C++
+```cpp
 #pragma once
 
 #include "Renderer.h"
@@ -87,7 +87,7 @@ namespace Happy {
 }
 ```
 **Core/Application.cpp**
-```C++
+```cpp
 #include "Application.h"
 
 #include "Platform/Input.h"
@@ -160,7 +160,7 @@ namespace Happy {
 ```
 ***
 **Platform/Window.h** is the window manager class.
-```C++
+```cpp
 #pragma once
 
 #include <GLFW/glfw3.h>
@@ -205,7 +205,7 @@ private:
 };
 ```
 **Platform/Window.cpp**
-```C++
+```cpp
 #include "Window.h"
 
 #include "Input.h"
@@ -294,7 +294,7 @@ void Window::shutdown() const
 ```
 
 **Platform/Input.h** is the basic input handling and polling system used by the renderer.
-```C++
+```cpp
 #pragma once
 
 #include <GLFW/glfw3.h>
@@ -415,7 +415,7 @@ private:
 ```
 ***
 **Core/Scene.h** is the scene base class encapsulating all the scene components.
-```C++
+```cpp
 #pragma once
 
 #include "Components/Model.h"
@@ -455,7 +455,7 @@ namespace Happy {
 }
 ```
 **Core/Scene.cpp**
-```C++
+```cpp
 #include "Scene.h"
 
 #include "Utility/ResourceManager.h"
@@ -507,7 +507,7 @@ namespace Happy {
 ```
 
 **Core/Renderer.h** is the heart of the system. This is where all the rendering is initialized and managed.
-```C++
+```cpp
 #pragma once
 
 #include "GL/ShaderProgram.h"
@@ -536,7 +536,7 @@ private:
 };
 ```
 **Core/Renderer.cpp**
-```C++
+```cpp
 #include "Renderer.h"
 
 #include "Platform/Input.h"
@@ -702,7 +702,7 @@ void Renderer::shutdown()
 ***
 Now lets go through all the components of the system.  
 **Components/Camera.h** has the Camera class which is the moving camera aka the projection matrix of the scene. The class handles the movement of camera.
-```C++
+```cpp
 #pragma once
 
 #include <glad/glad.h>
@@ -790,7 +790,7 @@ private:
 };
 ```
 **Components/Camera.cpp**
-```C++
+```cpp
 #include "Camera.h"
 
 Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch)
@@ -872,7 +872,7 @@ void Camera::updateCameraVectors()
 ```
 
 **Components/Mesh.h** has the Mesh calss which is the basic shape containing verticies indicies and textures.
-```C++
+```cpp
 #pragma once
 
 #include "GL/Vertex.h"
@@ -897,7 +897,7 @@ private:
 };
 ```
 **Components/Mesh.cpp**
-```C++
+```cpp
 #include "Mesh.h"
 
 Mesh::Mesh(std::vector<GL::Vertex> vertices, std::vector<unsigned int> indices, std::vector<GL::Texture> textures)
@@ -947,7 +947,7 @@ void Mesh::setupMesh()
 ```
 
 **Components/Model.h** is the 3D textured model class loaded using ASSIMP library.
-```C++
+```cpp
 #pragma once
 
 #include "Mesh.h"
@@ -991,7 +991,7 @@ private:
 };
 ```
 **Components/Model.cpp**
-```C++
+```cpp
 #include "Model.h"
 
 #include "Utility/ResourceManager.h"
@@ -1167,13 +1167,13 @@ std::vector<GL::Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureT
 ```
 
 **NOTE: I am still experimenting with a dynamic way to add directional light, point light and spot light**  
-```C++
+```cpp
 // I will add the code here when I finish it.
 ```  
 
 ***
 **Utility/ResourceManager.h** is the class used to load up shaders, textures and files.
-```C++
+```cpp
 #pragma once
 
 #include "GL/Shader.h"
@@ -1203,7 +1203,7 @@ public:
 };
 ```
 **Utility/ResourceManager.cpp**
-```C++
+```cpp
 #include "ResourceManager.h"
 
 #include <stb_image/stb_image.h>
@@ -1270,7 +1270,7 @@ std::string ResourceManager::loadFile(const std::string& filepath) const
 And last but not least, the core opengl components.  
 
 **GL/Vertex.h** is the basic vertex structure containing positions, texturecoords, normals etc.
-```C++
+```cpp
 #pragma once
 
 #include <glm/vec2.hpp>
@@ -1294,7 +1294,7 @@ namespace GL {
 
 **GL/VertexArray.h** is an abstraction over the opengl vertex arrays to use them easily.
 
-```C++
+```cpp
 #pragma once
 
 #include <glad/glad.h>
@@ -1335,7 +1335,7 @@ namespace GL {
 }
 ```
 **GL/VertexArray.cpp**
-```C++
+```cpp
 #include "VertexArray.h"
 
 namespace GL {
@@ -1378,7 +1378,7 @@ namespace GL {
 ```
 
 **GL/Shader.h** is an abstraction over opengl shaders.
-```C++
+```cpp
 #pragma once
 
 #include <glad/glad.h>
@@ -1413,7 +1413,7 @@ namespace GL {
 }
 ```
 **GL/Shader.cpp**
-```C++
+```cpp
 #include "Shader.h"
 
 #include "Utility/ResourceManager.h"
@@ -1453,7 +1453,7 @@ namespace GL {
 ```
 
 **GL/ShaderProgram.h** is the collection of compiled Shaders. This class also has methods to set uniforms.
-```C++
+```cpp
 #pragma once
 
 #include <glad/glad.h>
@@ -1504,7 +1504,7 @@ namespace GL {
 }
 ```
 **GL/ShaderProgram.cpp**
-```C++
+```cpp
 #include "ShaderProgram.h"
 
 #include <iostream>
@@ -1608,7 +1608,7 @@ namespace GL {
 ```
 
 **GL/Texture.h** is an abstraction over the textures. The textures are loaded using stb_image library.
-```C++
+```cpp
 #pragma once
 
 #include <glad/glad.h>
@@ -1653,7 +1653,7 @@ namespace GL {
 }
 ```
 **GL/Texture.cpp**
-```C++
+```cpp
 #include "Texture.h"
 
 #include <stb_image/stb_image.h>
