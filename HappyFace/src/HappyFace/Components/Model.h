@@ -34,8 +34,8 @@ private:
 
 	std::vector<GL::Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
 
-	glm::vec3 m_scale = {1.0f, 1.0f, 1.0f}, m_position;
+	glm::vec3 m_scale = { 1.0f, 1.0f, 1.0f }, m_position = {0.0f, 0.0f, 0.0f};
 	
-	glm::vec3 m_axis;
+	glm::vec3 m_axis = {1.0f, 1.0f, 1.0f};
 	float m_radians = 0.0f;
 };

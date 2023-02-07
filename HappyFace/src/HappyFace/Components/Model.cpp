@@ -25,11 +25,13 @@ void Model::scale(const glm::vec3& scale)
     m_scale = scale;
 }
 
-void Model::rotate(const float angle, const glm::vec3& axis) {
+void Model::rotate(const float angle, const glm::vec3& axis) 
+{
     m_radians = glm::radians(angle);
     m_axis = axis;
 }
-void Model::translate(const glm::vec3& pos) {
+void Model::translate(const glm::vec3& pos) 
+{
     m_position = pos;
 }
 
