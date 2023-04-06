@@ -63,6 +63,7 @@ void Renderer::renderScene(Happy::Scene& scene)
     {
         modelShader.setMat4("model", model.getModelMatrix());
         renderModel(model, modelShader);
+        model.update();
     }
     modelShader.unUse();
 
@@ -81,7 +82,9 @@ void Renderer::renderMesh(const Mesh& mesh, const GL::ShaderProgram& shader)
     unsigned int specularNr = 1;
     unsigned int normalNr = 1;
     unsigned int heightNr = 1;
-    for (unsigned int i = 0; i < mesh.textures.size(); i++)
+
+    unsigned int i = 0;
+    for (; i < mesh.textures.size(); i++)
     {
         glActiveTexture(GL_TEXTURE0 + i);
 
@@ -99,6 +102,10 @@ void Renderer::renderMesh(const Mesh& mesh, const GL::ShaderProgram& shader)
         shader.setInt((name + number).c_str(), i);
         mesh.textures[i].bind(i);
     }
+
+    /*glActiveTexture(GL_TEXTURE0 + i);
+    shader.setInt("texture_filter", i);
+    mesh.filter.bind(i);*/
 
     mesh.VAO.bind();
     glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(mesh.indices.size()), GL_UNSIGNED_INT, 0);

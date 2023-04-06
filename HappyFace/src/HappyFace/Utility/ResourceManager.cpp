@@ -56,6 +56,5 @@ std::string ResourceManager::loadFile(const std::string& filepath) const
 		std::cerr << "ERROR::FILE_NOT_SUCCESFULLY_READ: " << filepath << std::endl << e.what() << std::endl;
 	}
 
-	
 	return data;
 }

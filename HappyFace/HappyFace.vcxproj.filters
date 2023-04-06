@@ -69,6 +69,9 @@
     <ClCompile Include="src\HappyFace\Components\LightDirectional.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\HappyFace\Processing\Multiplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendors\includes\glad\glad.h">
@@ -816,6 +819,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\HappyFace\Components\LightDirectional.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HappyFace\Processing\Filter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HappyFace\Processing\Multiplication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

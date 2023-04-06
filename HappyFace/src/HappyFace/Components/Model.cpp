@@ -4,7 +4,8 @@
 
 #include <iostream>
 
-Model::Model(const std::string& path, bool gamma)
+Model::Model(const std::string& path, const std::function<void()> updateFn, bool gamma)
+    : update(updateFn)
 {
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace | aiProcess_OptimizeMeshes);

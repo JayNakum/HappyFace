@@ -47,7 +47,7 @@ namespace Happy {
 	void Application::loadScene(Scene* scene)
 	{
 		m_scene = scene;
-		m_scene->init();
+		//m_scene->init();
 	}
 
 	Application::Application()

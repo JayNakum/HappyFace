@@ -23,5 +23,4 @@ public:
 	GL::Shader loadShader(const std::string& filepath) const;
 	GL::Texture loadTexture(const std::string& dir, const std::string& path, const std::string& type = "texture_diffuse") const;
 	std::string loadFile(const std::string& filepath) const;
-
 };

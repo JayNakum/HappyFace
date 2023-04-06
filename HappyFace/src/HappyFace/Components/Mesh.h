@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+//#include "Utility/ResourceManager.h"
+
 class Mesh
 {
 public:
@@ -16,6 +18,8 @@ public:
     GL::VertexArray VAO;
 
     Mesh(std::vector<GL::Vertex> vertices, std::vector<unsigned int> indices, std::vector<GL::Texture> textures);
+    //GL::Texture filter = ResourceManager::getInstance().loadTexture("resources/textures", "wall.jpg", "texture_filter");
+    
     void deleteMesh();
 private:
     void setupMesh();

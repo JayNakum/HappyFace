@@ -11,6 +11,7 @@
 
 #include <string>
 #include <vector>
+#include <functional>
 
 class Model
 {
@@ -20,13 +21,15 @@ public:
 	std::vector<GL::Texture> textures_loaded;
 	bool gammaCorrection = false;
 	
-	Model(const std::string& path, bool gamma = false);
+	Model(const std::string& path, const std::function<void()> updateFn = []() {}, bool gamma = false);
 	void deleteModel();
 
 	void scale(const glm::vec3& scale);
 	void rotate(const float angle, const glm::vec3& axis);
 	void translate(const glm::vec3& pos);
 	glm::mat4 getModelMatrix() const;
+
+	std::function<void()> update;
 
 private:
 	void processNode(aiNode* node, const aiScene* scene);

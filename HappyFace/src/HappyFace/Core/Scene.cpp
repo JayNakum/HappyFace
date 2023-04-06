@@ -11,10 +11,15 @@ namespace Happy {
 		models.push_back(model);
 	}
 
-	void Scene::init()
+	void Scene::addFilter(const Filter& filter)
+	{
+		modelShader[1] = filter.shader;
+	}
+
+	/*void Scene::init()
 	{
 		addShader("modelShader", modelShader);
-	}
+	}*/
 
 	void Scene::addShader(const std::string& name, const std::vector<std::string>& shaderPaths)
 	{

@@ -6,7 +6,8 @@
 #include "GL/ShaderProgram.h"
 #include "GL/Shader.h"
 
-#include <string>
+#include "Processing/Filter.h"
+
 #include <unordered_map>
 
 namespace Happy {
@@ -20,10 +21,11 @@ namespace Happy {
 
 		Scene();
 
-		void init();
+		// void init();
 
 		void addModel(const Model& model);
 		// TODO: void addLight();
+		void addFilter(const Filter& filter);
 
 		void deleteScene();
 
@@ -31,7 +33,6 @@ namespace Happy {
 		std::vector<std::string> modelShader = { "resources/shaders/model.vs.glsl", "resources/shaders/model.fs.glsl" };
 		void addShader(const std::string& name, const std::vector<std::string>& shaders);
 
-	private:
 		std::unordered_map<std::string, GL::ShaderProgram> shaders;
 	};
 }

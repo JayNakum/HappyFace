@@ -1,11 +1,22 @@
 #include "HappyFace/HappyFace.h"
 
+#include "HappyFace/Processing/Multiplication.h"
+
 class TestScene : public Happy::Scene
 {
 public:
 	TestScene()
 	{
-		Model backpack("resources/objects/backpack/backpack.obj");
+		modelShader[1] = "resources/shaders/processing/multiply.fs.glsl";
+		addShader("modelShader", modelShader);
+
+		auto& shader = getShader("modelShader");
+
+		Model backpack("resources/objects/backpack/backpack.obj", [&]() {
+			// multiply.apply(shader);
+			shader.setVec4("mul_value", { 1.0f, 1.0f, 1.0f, 1.0f });
+		});
+		
 		addModel(backpack);
 	}
 };
