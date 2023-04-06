@@ -59,7 +59,7 @@ void Renderer::renderScene(Happy::Scene& scene)
     modelShader.setMat4("view", view);
     modelShader.setMat4("projection", projection);
 
-    for (auto& model : scene.models)
+    for (auto& model : scene.getModels())
     {
         modelShader.setMat4("model", model.getModelMatrix());
         renderModel(model, modelShader);

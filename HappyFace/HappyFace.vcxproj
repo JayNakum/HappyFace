@@ -166,7 +166,6 @@
     <ClCompile Include="src\HappyFace\Components\LightDirectional.cpp" />
     <ClCompile Include="src\HappyFace\GL\Texture.cpp" />
     <ClCompile Include="src\HappyFace\GL\ShaderProgram.cpp" />
-    <ClCompile Include="src\HappyFace\Processing\Multiplication.cpp" />
     <ClCompile Include="src\HappyFace\Utility\ResourceManager.cpp" />
     <ClCompile Include="src\HappyFace\GL\Shader.cpp" />
     <ClCompile Include="src\HappyFace\GL\VertexArray.cpp" />
@@ -189,8 +188,6 @@
     <ClInclude Include="src\HappyFace\Components\Mesh.h" />
     <ClInclude Include="src\HappyFace\GL\Texture.h" />
     <ClInclude Include="src\HappyFace\GL\ShaderProgram.h" />
-    <ClInclude Include="src\HappyFace\Processing\Filter.h" />
-    <ClInclude Include="src\HappyFace\Processing\Multiplication.h" />
     <ClInclude Include="src\HappyFace\Utility\ResourceManager.h" />
     <ClInclude Include="src\HappyFace\GL\Shader.h" />
     <ClInclude Include="src\HappyFace\GL\VertexArray.h" />

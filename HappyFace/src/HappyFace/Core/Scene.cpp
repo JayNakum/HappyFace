@@ -4,50 +4,38 @@
 
 namespace Happy {
 	Scene::Scene()
-		: camera(glm::vec3(0.0f, 0.0f, 3.0f)) {}
-
-	void Scene::addModel(const Model& model)
+		: camera(glm::vec3(0.0f, 0.0f, 3.0f)) 
 	{
-		models.push_back(model);
-	}
-
-	void Scene::addFilter(const Filter& filter)
-	{
-		modelShader[1] = filter.shader;
-	}
-
-	/*void Scene::init()
-	{
-		addShader("modelShader", modelShader);
-	}*/
-
-	void Scene::addShader(const std::string& name, const std::vector<std::string>& shaderPaths)
-	{
-		GL::ShaderProgram shaderProgram;
-		std::vector<GL::Shader> shadersList;
-
-		for (auto& path : shaderPaths)
-		{
-			GL::Shader shader = ResourceManager::getInstance().loadShader(path);
-			shadersList.push_back(shader);
-			shaderProgram.attach(shader.getID());
-		}
-
-		shaderProgram.linkProgram();
-		shaders.insert({ name, shaderProgram });
-
-		for (auto& shader : shadersList)
-			shader.deleteShader();
+		modelShader.reserve(2);
+		m_shaders.reserve(2);
 	}
 
 	void Scene::deleteScene()
 	{
-		for (auto& model : models)
+		for (auto& model : m_models)
 			model.deleteModel();
-		models.clear();
+		m_models.clear();
 
-		for (auto& shader : shaders)
+		for (auto& shader : m_shaders)
 			(shader.second).deleteProgram();
-		shaders.clear();
+		m_shaders.clear();
+	}
+
+	void Scene::initShaders()
+	{
+		modelShader = { "resources/shaders/model.vs.glsl", "resources/shaders/model.fs.glsl" };
+		addShader("modelShader", modelShader);
+	}
+
+	void Scene::initModels() {}
+
+	void Scene::addModel(const Model& model)
+	{
+		m_models.push_back(model);
+	}
+
+	void Scene::addShader(const std::string& name, const std::vector<std::string>& shaderPaths)
+	{
+		m_shaders.insert({ name, ResourceManager::getInstance().loadShaderProgram(shaderPaths)});
 	}
 }

@@ -6,6 +6,26 @@
 #include <sstream>
 #include <fstream>
 
+GL::ShaderProgram ResourceManager::loadShaderProgram(const std::vector<std::string>& shaderPaths) const
+{
+	GL::ShaderProgram shaderProgram;
+	std::vector<GL::Shader> shadersList;
+	
+	for (auto& path : shaderPaths)
+	{
+		GL::Shader shader = ResourceManager::getInstance().loadShader(path);
+		shadersList.push_back(shader);
+		shaderProgram.attach(shader.getID());
+	}
+	
+	shaderProgram.linkProgram();
+	
+	for (auto& shader : shadersList)
+		shader.deleteShader();
+
+	return shaderProgram;
+}
+
 GL::Shader ResourceManager::loadShader(const std::string& filepath) const
 {
 	std::string shaderSource = loadFile(filepath);

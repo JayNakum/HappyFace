@@ -16,7 +16,7 @@ namespace Happy {
 		void loadScene(Scene* scene);
 
 	private:
-		std::string title = "learnopengl.com"; // Thank You https://learnopengl.com
+		std::string title = "jaynakum.github.io"; // Thank You https://learnopengl.com
 		void terminate();
 		Scene* m_scene = nullptr;
 		Renderer m_renderer;
