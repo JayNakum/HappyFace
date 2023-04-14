@@ -65,6 +65,7 @@ void Renderer::renderScene(Happy::Scene& scene)
         renderModel(model, modelShader);
         model.update();
     }
+
     modelShader.unUse();
 
     handleCameraEvents(scene.camera);
@@ -102,10 +103,10 @@ void Renderer::renderMesh(const Mesh& mesh, const GL::ShaderProgram& shader)
         shader.setInt((name + number).c_str(), i);
         mesh.textures[i].bind(i);
     }
-
-    /*glActiveTexture(GL_TEXTURE0 + i);
+    
+    glActiveTexture(GL_TEXTURE0 + i);
     shader.setInt("texture_filter", i);
-    mesh.filter.bind(i);*/
+    mesh.filter.bind(i);
 
     mesh.VAO.bind();
     glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(mesh.indices.size()), GL_UNSIGNED_INT, 0);

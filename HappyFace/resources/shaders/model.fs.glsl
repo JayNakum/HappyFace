@@ -4,14 +4,10 @@ out vec4 FragColor;
 in vec2 TexCoords;
 
 uniform sampler2D texture_diffuse1;
-
-// uniform vec4 add_value;
-// uniform vec4 mul_value;
+uniform sampler2D texture_filter;
+uniform vec4 value;
 
 void main()
 {   
-    // FragColor = texture(texture_diffuse1, TexCoords) + add_value;
-    // FragColor = texture(texture_diffuse1, TexCoords) * mul_value;
-
-    FragColor = texture(texture_diffuse1, TexCoords);
+    FragColor = mix(texture(texture_diffuse1, TexCoords), texture(texture_filter, TexCoords), 0.0) * value;
 }

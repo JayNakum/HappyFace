@@ -7,7 +7,7 @@ public:
 	{
 		auto& shader = getShader("modelShader");
 		shader.use();
-		shader.setVec4("mul_value", { 1.0f, 0.0f, 0.0f, 1.0f });
+		shader.setVec4("value", { 1.0f, 1.0f, 1.0f, 1.0f });
 		shader.unUse();
 
 		Model backpack("resources/objects/backpack/backpack.obj");
