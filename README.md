@@ -16,6 +16,6 @@ I will keep adding new features to this framework as I will learn new topics in 
 
 ## Getting Started
 The project comes with a visual studio solution, just open it and you are good to go!  
-To simply use the renderer, you only have to ```#include "happyface.h"```. An example is already in the repository, [TestApp.cpp](./HappyFace/src/TestApp.cpp)
+To simply use the renderer, you only have to ```#include "happyface.h"```. An example is already in the repository, [TestApp.cpp](./HappyFace/src/TestApp.cpp).
 
 ### Developed by [Jay Nakum](https://jaynakum.github.io)
